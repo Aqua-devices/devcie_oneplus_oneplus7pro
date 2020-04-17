@@ -136,9 +136,6 @@ PRODUCT_PACKAGES += \
     libandroid_net
 
 PRODUCT_PACKAGES += \
-    DeviceParts
-
-PRODUCT_PACKAGES += \
     vndk_package
 
 PRODUCT_PACKAGES += \

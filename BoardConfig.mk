@@ -114,7 +114,7 @@ BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # global
 TARGET_SPECIFIC_HEADER_PATH := $(BOARD_PATH)/include
-BOARD_USES_QCOM_HARDWARE := true
+# BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := false
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
@@ -249,19 +249,12 @@ TARGET_SYSTEM_PROP += $(BOARD_PATH)/system.prop
 endif
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
-# selinux
-include vendor/omni/sepolicy/sepolicy.mk
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(BOARD_PATH)/sepolicy/public
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(BOARD_PATH)/sepolicy/private
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += \
-    device/qcom/sepolicy/generic/public \
-    device/qcom/sepolicy/qva/public
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
-    device/qcom/sepolicy/generic/private \
-    device/qcom/sepolicy/qva/private
-
-BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp_policy
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/private
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/public
+BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/vendor
 
 # for offmode charging
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
